@@ -1,0 +1,33 @@
+{
+  "name": "barbearia-api",
+  "version": "1.0.0",
+  "description": "Sistema feito para agendamentos de cortes de cabelo",
+  "homepage": "https://github.com/leonardonascferreira/barbearia-api#readme",
+  "bugs": {
+    "url": "https://github.com/leonardonascferreira/barbearia-api/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leonardonascferreira/barbearia-api.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx src/server.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^7.5.0",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.5.0",
+    "prisma": "^7.5.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

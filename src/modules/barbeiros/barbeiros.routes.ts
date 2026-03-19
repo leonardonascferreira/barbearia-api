@@ -1,8 +1,8 @@
 import { Router } from 'express'
+import { createBarbeiro } from './barbeiros.controller.js'
+
 const router = Router()
 
-router.get ('/barbeiros', async (req, res) => {
-    res.json({ message: "rota funcionando" })
-})
+router.post ('/barbeiros', createBarbeiro)
 
 export default router

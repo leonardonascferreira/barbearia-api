@@ -1,5 +1,6 @@
 import { createBarbeiro } from '../barbeiros/barbeiros.repository.js'
 import { findBarbeiroByLogin } from '../barbeiros/barbeiros.repository.js'
+import bcrypt from 'bcrypt'
 
 // Função para verificar se já possui login
 async function createBarbeiroService(nome: string, login: string, senha: string) {
@@ -7,9 +8,11 @@ async function createBarbeiroService(nome: string, login: string, senha: string)
     if (barbeiro) {
         throw new Error('Login já cadastrado')
     } else {
-        const novoBarbeiro = await createBarbeiro(nome, login, senha)
+        const senhaHash = await bcrypt.hash(senha, 10)
+        const novoBarbeiro = await createBarbeiro(nome, login, senhaHash)
         return novoBarbeiro
     }
 }   
+
 
 export { createBarbeiroService }

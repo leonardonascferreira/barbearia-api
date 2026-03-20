@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { createBarbeiro, loginBarbeiro } from './barbeiros.controller.js'
+import { authMiddleware } from '../../shared/middlewares/auth.middleware.js'
 
 // cria uma instância do router
 const router = Router()

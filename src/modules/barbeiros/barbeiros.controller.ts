@@ -3,7 +3,7 @@ import { createBarbeiroService, loginBarbeiroService } from "./barbeiros.service
 // função responsável por receber a requisição e responder ao cliente
 async function createBarbeiro(req, res) {
     // extrai os dados do corpo da requisição
-    const {nome, login, senha} = req.body
+    const { nome, login, senha } = req.body
     try {
         // chama o service para criar o barbeiro
         const barbeiro = await createBarbeiroService(nome, login, senha)
@@ -18,7 +18,7 @@ async function createBarbeiro(req, res) {
 // função responsável por receber a requisição de login e retornar o token JWT
 async function loginBarbeiro(req, res) {
     // extrai login e senha do corpo de requisição
-    const {login, senha} = req.body
+    const { login, senha } = req.body
     try {
         // chama o service para autenticar o barbeiro e gerar o token
         const token = await loginBarbeiroService(login, senha)

@@ -1,5 +1,6 @@
 import express from 'express'   
-import router from './modules/barbeiros/barbeiros.routes.js'
+import barbeiroRouter from './modules/barbeiros/barbeiros.routes.js'
+import servicoRouter from './modules/servicos/servicos.routes.js'
 
 // cria a instância da aplicação
 const app = express()
@@ -8,7 +9,10 @@ const app = express()
 app.use(express.json())
 
 // registra as rotas do barbeiros na aplicação
-app.use(router)
+app.use(barbeiroRouter)
+
+// registra as rotas dos serviços na aplicação
+app.use(servicoRouter)
 
 // exporta o app para ser usado no server.ts
 export default app

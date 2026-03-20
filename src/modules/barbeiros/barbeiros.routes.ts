@@ -9,6 +9,6 @@ const router = Router()
 router.post ('/barbeiros', createBarbeiro)
 
 // define a rota POST /login 
-router.post ('/login', loginBarbeiro)
+router.post ('/login', authMiddleware, loginBarbeiro)
 
 export default router

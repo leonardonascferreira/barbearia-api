@@ -1,6 +1,6 @@
 import prisma from '../../config/prisma.js'
 
-// Função para criar a conta do barbeiro
+// função responsável por inserir um novo barbeiro no banco de dados
 async function createBarbeiro(nome: string, login: string, senha: string) {
     const barbeiro = await prisma.barbeiro.create({
         data: {
@@ -12,7 +12,7 @@ async function createBarbeiro(nome: string, login: string, senha: string) {
     return barbeiro
 }
 
-// Função para achar o barbeiro pelo login
+// função responsável por buscar um barbeiro no banco de dados pelo login
 async function findBarbeiroByLogin(login: string) {
     const barbeiro = await prisma.barbeiro.findUnique({
         where: {

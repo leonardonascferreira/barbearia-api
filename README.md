@@ -116,4 +116,5 @@ npm run dev
 
 ## Contato 📧
 
+- [LinkedIn](https://linkedin.com/in/leonardonascferreira)
 - [E-mail](mailto:leonardonascferreira@gmail.com)

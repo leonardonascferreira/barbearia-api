@@ -1,4 +1,4 @@
-import { createAgendamentoService, updateAgendamentoService, deleteAgendamentoService } from "./agendamentos.service.js"
+import { createAgendamentoService, updateAgendamentoService, deleteAgendamentoService, findAgendamentosByDataService } from "./agendamentos.service.js"
 
 // função responsável por receber a requisição de criação e responder ao cliente
 async function createAgendamento(req, res) {
@@ -34,6 +34,17 @@ async function deleteAgendamento(req, res) {
     }
 }
 
+async function getAgendamentoByData(req, res) {
+    const data = new Date(req.query.data as string)
+    try {
+        const agendamento = await findAgendamentosByDataService(data)
+        res.json(agendamento)
+    } catch (error) {
+        res.status(400).json({ message: error.message })
+    }
+}
+
 export { createAgendamento }
 export { updateAgendamento }
 export { deleteAgendamento }
+export { getAgendamentoByData }

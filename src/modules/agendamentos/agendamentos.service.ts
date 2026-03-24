@@ -1,6 +1,6 @@
 import { findBarbeiroById } from "../barbeiros/barbeiros.repository.js"
 import { findServicoById } from "../servicos/servicos.repository.js"
-import { createAgendamento, updateAgendamento, deleteAgendamento, findAgendamentosByDataHoraEBarbeiro } from "./agendamentos.repository.js"
+import { createAgendamento, updateAgendamento, deleteAgendamento, findAgendamentosByDataHoraEBarbeiro, findAgendamentosByData } from "./agendamentos.repository.js"
 
 // função para criar um agendamento com tratamento de erro
 async function createAgendamentoService(dataHora: Date, clienteId: number, barbeiroId: number, servicoId: number) {
@@ -28,6 +28,12 @@ async function deleteAgendamentoService(id: number) {
     return agendamento
 }
 
+async function findAgendamentosByDataService(data: Date) {
+    const agendamento = await findAgendamentosByData(data)
+    return agendamento
+}
+
 export { createAgendamentoService }
 export { updateAgendamentoService }
 export { deleteAgendamentoService }
+export { findAgendamentosByDataService }

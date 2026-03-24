@@ -28,7 +28,7 @@ async function loginBarbeiroService(login: string, senha: string) {
             throw new Error('Senha inválida')
         } else {
             // gera um token JWT com o id do barbeiro e retorna
-            const token = jwt.sign({ id: barbeiro.id }, 'segredo', {expiresIn: '1d'}) 
+            const token = jwt.sign({ id: barbeiro.id }, process.env.JWT_SECRET!, {expiresIn: '1d'}) 
             return token
         }
     } else {

@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import app from './app.ts'
 
 // define a porta que o servidor vai escutar

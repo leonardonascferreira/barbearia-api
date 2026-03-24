@@ -1,5 +1,4 @@
-import { createBarbeiro } from '../barbeiros/barbeiros.repository.js'
-import { findBarbeiroByLogin } from '../barbeiros/barbeiros.repository.js'
+import { createBarbeiro, findBarbeiroByLogin } from '../barbeiros/barbeiros.repository.js'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
@@ -8,7 +7,6 @@ async function createBarbeiroService(nome: string, login: string, senha: string)
     // verifica se já existe um barbeiro com esse login
     const barbeiro = await findBarbeiroByLogin(login)
     if (barbeiro) {
-        // se existir, lança um erro
         throw new Error('Login já cadastrado')
     } else {
         // criptografa a senha no banco de dados (antes de salvar)
@@ -27,7 +25,6 @@ async function loginBarbeiroService(login: string, senha: string) {
         // compara a senha digitada com o hash salvo no banco de dados
         const corresponde = await bcrypt.compare(senha, barbeiro.senha)
         if (!corresponde) {
-            // se a senha estiver errada, lança um erro
             throw new Error('Senha inválida')
         } else {
             // gera um token JWT com o id do barbeiro e retorna
@@ -35,7 +32,6 @@ async function loginBarbeiroService(login: string, senha: string) {
             return token
         }
     } else {
-        // se o barbeiro não existir, lança um erro
         throw new Error('Login não encontrado')
     }
 }

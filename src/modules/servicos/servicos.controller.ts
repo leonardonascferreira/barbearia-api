@@ -1,5 +1,6 @@
 import { createServicoService, deleteServicoService, findAllServicoService, updateServicoService } from "./servicos.service.js"
 
+// função responsável por receber a requisição de criação e responder ao cliente
 async function createServico(req, res) {
     const { nome, preco, duracao } = req.body
     try {
@@ -10,6 +11,7 @@ async function createServico(req, res) {
     }
 }
 
+// função responsável por listar todos os serviços
 async function findAllServicos(req, res) {
     try {
         const servicos = await findAllServicoService()
@@ -19,6 +21,7 @@ async function findAllServicos(req, res) {
     }
 }
 
+// função responsável por receber a requisição de atualização e responder ao cliente
 async function updateServico(req, res) {
     const id = Number(req.params.id)
     const {nome, preco, duracao} = req.body
@@ -30,6 +33,7 @@ async function updateServico(req, res) {
     }
 }
 
+// função responsável por receber a requisição de exclusão e responder ao cliente
 async function deleteServico(req, res) {
     const id = Number(req.params.id)
     try {

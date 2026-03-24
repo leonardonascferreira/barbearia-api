@@ -2,17 +2,15 @@ import { createServico, deleteServico, findAllServicos, updateServico, findServi
 
 // função para criar um serviço, com tratamento de erro
 async function createServicoService(nome: string, preco: number, duracao: number) {
-    if (!nome) {
-        throw new Error ('Nehum nome definido')
-    } if (!preco || preco <= 0) {
-        throw new Error ('Nehum preço definido')
-    } if (!duracao || duracao <= 0) {
-        throw new Error ('Nenhuma duração definida')
-    }
+    if (!nome) throw new Error ('Nehum nome definido') 
+    if (!preco || preco <= 0) throw new Error ('Nehum preço definido')
+    if (!duracao || duracao <= 0) throw new Error ('Nenhuma duração definida')
+
     const servico = await createServico(nome, preco, duracao)
     return servico
 }
 
+// função para buscar todos os serviços sem filtros
 async function findAllServicoService(){
     const servico = await findAllServicos()
     return servico
@@ -31,7 +29,7 @@ async function updateServicoService(id: number, nome: string, preco: number, dur
     return servico
 }
 
-// função para deletar o serviço
+// função para deletar um serviço pelo id
 async function deleteServicoService(id: number) {
     const servico = await deleteServico(id)
     return servico

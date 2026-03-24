@@ -43,6 +43,7 @@ async function deleteServico(id: number) {
     return servico
 }
 
+// função responsável por buscar um serviço pelo id
 async function findServicoById(id: number) {
     const servico = await prisma.servico.findUnique({
         where: {

@@ -10,8 +10,8 @@ datasource db {
 model Cliente {
   id          Int @id @default(autoincrement())
   nome        String
-  telefone    String
-  email       String
+  telefone    String @unique
+  email       String @unique
   agendamentos Agendamento[]
 }
 
@@ -19,7 +19,7 @@ model Barbeiro {
   id          Int @id @default(autoincrement())
   nome        String
   login       String @unique
-  senha       String
+  senha       String 
   agendamentos Agendamento[]
 }
 

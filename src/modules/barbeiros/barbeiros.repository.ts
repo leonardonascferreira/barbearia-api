@@ -22,5 +22,16 @@ async function findBarbeiroByLogin(login: string) {
     return barbeiro
 }
 
+// função responsável por buscar um barbeiro no banco de dados pelo id
+async function findBarbeiroById(id: number) {
+    const barbeiro = await prisma.barbeiro.findUnique({
+        where: {
+            id: id
+        }
+    })
+    return barbeiro
+}
+
 export { createBarbeiro }
 export { findBarbeiroByLogin }
+export { findBarbeiroById }

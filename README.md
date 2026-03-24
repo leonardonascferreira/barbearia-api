@@ -46,7 +46,6 @@ npm install
 3. Configure o arquivo .env:
 ```bash
 DATABASE_URL="mysql://usuario:senha@localhost:3306/database"
-JWT_SECRET="sua_chave_secreta"
 ```
 
 4. Execute as migrations do Prisma:

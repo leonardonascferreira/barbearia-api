@@ -1,41 +1,94 @@
 ## Sistema de Agendamento para Barbearia 💈
 
-Este é um **sistema de agendamento para barbearia** desenvolvido em **Node.js com TypeScript**, utilizando **Prisma ORM** e banco de dados **MySQL**.  
-O projeto foi desenvolvido como **projeto acadêmico**, com foco na construção de uma API REST completa, aplicando conceitos reais de back-end como autenticação, organização em camadas e regras de negócio.
+API REST para gerenciamento de agendamentos de barbearia, eliminando a necessidade de controle manual via WhatsApp. Desenvolvida com Node.js, TypeScript, Prisma ORM e MySQL.
 
 ---
 
 ## Funcionalidades 🛠️
 
-* Cadastro e login de barbeiros com autenticação via JWT;
-* Middleware de autenticação para proteção de rotas;
-* CRUD completo de serviços com autenticação;
-* Cadastro de clientes;
-* Criação de agendamentos com validações;
-* Confirmação de agendamentos;
-* Cancelamento de agendamentos;
+- Cadastro e autenticação de barbeiros com JWT
+- Middleware de autenticação para proteção de rotas
+- CRUD completo de serviços
+- Cadastro de clientes
+- Criação de agendamentos com validações de negócio
+- Confirmação e cancelamento de agendamentos
+- Listagem de agendamentos por data
 
 ---
 
-## Tecnologias e Conceitos 💻
+## Tecnologias 💻
 
-* **Node.js** – Construção da API;
-* **TypeScript** – Tipagem estática e melhor organização do código;
-* **Prisma ORM** – Manipulação e comunicação com o banco de dados;
-* **MySQL** – Armazenamento de dados;
-* **JWT (JSON Web Token)** – Autenticação e controle de acesso;
-* **Middleware de autenticação** – Proteção de rotas;
-* **Arquitetura em camadas** – Separação entre controllers, services e middlewares;
-* **Validação de regras de negócio** – Controle de agendamentos;
+- **Node.js** — Runtime JavaScript
+- **TypeScript** — Tipagem estática
+- **Express** — Framework HTTP
+- **Prisma ORM** — Comunicação com banco de dados
+- **MySQL** — Banco de dados relacional
+- **JWT** — Autenticação e controle de acesso
+- **Bcrypt** — Hash de senhas
 
 ---
 
-## Como usar ▶️
+## Arquitetura 📐
 
-1. Clone este repositório:
+O projeto segue uma arquitetura em camadas (Controller → Service → Repository), garantindo separação de responsabilidades e facilidade de manutenção.
+```
+src/
+├── modules/
+│   ├── barbeiros/
+│   │   ├── barbeiros.controller.ts
+│   │   ├── barbeiros.service.ts
+│   │   ├── barbeiros.repository.ts
+│   │   └── barbeiros.routes.ts
+│   ├── clientes/
+│   ├── servicos/
+│   └── agendamentos/
+├── shared/
+│   └── middlewares/
+│       └── auth.middleware.ts
+├── config/
+│   └── prisma.ts
+├── app.ts
+└── server.ts
+```
 
+---
+
+## Rotas da API 🔗
+
+### Barbeiros
+| Método | Rota | Descrição | Auth |
+|--------|------|-----------|------|
+| POST | /barbeiros | Cadastro de barbeiro | ❌ |
+| POST | /login | Login do barbeiro | ❌ |
+
+### Serviços
+| Método | Rota | Descrição | Auth |
+|--------|------|-----------|------|
+| GET | /servicos | Listar serviços | ❌ |
+| POST | /servicos | Criar serviço | ✅ |
+| PUT | /servicos/:id | Atualizar serviço | ✅ |
+| DELETE | /servicos/:id | Deletar serviço | ✅ |
+
+### Clientes
+| Método | Rota | Descrição | Auth |
+|--------|------|-----------|------|
+| POST | /clientes | Cadastrar cliente | ❌ |
+
+### Agendamentos
+| Método | Rota | Descrição | Auth |
+|--------|------|-----------|------|
+| POST | /agendamentos | Criar agendamento | ❌ |
+| GET | /agendamentos?data= | Listar por data | ✅ |
+| PUT | /agendamentos/:id | Atualizar status | ✅ |
+| DELETE | /agendamentos/:id | Deletar agendamento | ✅ |
+
+---
+
+## Como executar ▶️
+
+1. Clone o repositório:
 ```bash
-git clone <URL_DO_REPOSITORIO>
+git clone https://github.com/leonardonascferreira/barbearia-api
 ```
 
 2. Instale as dependências:
@@ -43,12 +96,13 @@ git clone <URL_DO_REPOSITORIO>
 npm install
 ```
 
-3. Configure o arquivo .env:
-```bash
-DATABASE_URL="mysql://usuario:senha@localhost:3306/database"
+3. Configure o `.env`:
+```env
+DATABASE_URL="mysql://usuario:senha@localhost:3306/barbearia_db"
+JWT_SECRET="sua_chave_secreta"
 ```
 
-4. Execute as migrations do Prisma:
+4. Execute as migrations:
 ```bash
 npx prisma migrate dev
 ```
@@ -60,15 +114,7 @@ npm run dev
 
 ---
 
-## Estrutura do Projeto 📁
-```bash
-src/
-├── controllers/
-├── services/
-├── routes/
-├── middlewares/
-├── prisma/
-```
-
 ## Contato 📧
-- [Meu E-mail](mailto:leonardonascferreira@gmail.com)
+
+- [LinkedIn](https://linkedin.com/in/leonardonascferreira)
+- [E-mail](mailto:leonardonascferreira@gmail.com)

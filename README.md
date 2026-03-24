@@ -1,63 +1,75 @@
-# 💈 Sistema de Agendamento para Barbearia
+## Sistema de Agendamento para Barbearia 💈
 
-Este projeto é uma API para gerenciamento de barbearia, permitindo o controle de usuários (barbeiros), clientes, serviços e agendamentos.
+Este é um **sistema de agendamento para barbearia** desenvolvido em **Node.js com TypeScript**, utilizando **Prisma ORM** e banco de dados **MySQL**.  
+O projeto foi desenvolvido como **projeto acadêmico**, com foco na construção de uma API REST completa, aplicando conceitos reais de back-end como autenticação, organização em camadas e regras de negócio.
 
-## 🚀 Tecnologias Utilizadas
+---
 
-- Node.js
-- TypeScript
-- Prisma ORM
-- MySQL
-- JWT (JSON Web Token)
+## Funcionalidades 🛠️
 
-## 📌 Funcionalidades
+* Cadastro e login de barbeiros com autenticação via JWT;
+* Middleware de autenticação para proteção de rotas;
+* CRUD completo de serviços com autenticação;
+* Cadastro de clientes;
+* Criação de agendamentos com validações;
+* Confirmação de agendamentos;
+* Cancelamento de agendamentos;
 
-### 🔐 Autenticação
-- Cadastro de barbeiro
-- Login com geração de token JWT
-- Middleware de autenticação para rotas protegidas
+---
 
-### ✂️ Serviços
-- CRUD completo de serviços
-- Rotas protegidas por autenticação
+## Tecnologias e Conceitos 💻
 
-### 👤 Clientes
-- Cadastro de clientes
+* **Node.js** – Construção da API;
+* **TypeScript** – Tipagem estática e melhor organização do código;
+* **Prisma ORM** – Manipulação e comunicação com o banco de dados;
+* **MySQL** – Armazenamento de dados;
+* **JWT (JSON Web Token)** – Autenticação e controle de acesso;
+* **Middleware de autenticação** – Proteção de rotas;
+* **Arquitetura em camadas** – Separação entre controllers, services e middlewares;
+* **Validação de regras de negócio** – Controle de agendamentos;
 
-### 📅 Agendamentos
-- Criação de agendamentos com validações
-- Confirmação de agendamentos
-- Cancelamento de agendamentos
+---
 
-## 🔒 Segurança
-- Proteção de rotas com middleware de autenticação
-- Uso de JWT para controle de sessão
+## Como usar ▶️
 
-## 📁 Estrutura do Projeto (resumida)
+1. Clone este repositório:
+
+```bash
+git clone <URL_DO_REPOSITORIO>
+```
+
+2. Instale as dependências:
+```bash
+npm install
+```
+
+3. Configure o arquivo .env:
+```bash
+DATABASE_URL="mysql://usuario:senha@localhost:3306/database"
+JWT_SECRET="sua_chave_secreta"
+```
+
+4. Execute as migrations do Prisma:
+```bash
+npx prisma migrate dev
+```
+
+5. Inicie o servidor:
+```bash
+npm run dev
+```
+
+---
+
+## Estrutura do Projeto 📁
+```bash
 src/
 ├── controllers/
 ├── services/
 ├── routes/
 ├── middlewares/
 ├── prisma/
+```
 
-
-## ⚙️ Como rodar o projeto
-
-1. Clone o repositório:
-```bash
-git clone <url-do-repositorio>
-
-Instale as dependências:
-
-npm install
-
-Configure o arquivo .env:
-DATABASE_URL="mysql://usuario:senha@localhost:3306/database"
-JWT_SECRET="sua_chave_secreta"
-
-Execute as migrations do Prisma:
-npx prisma migrate dev
-
-Inicie o servidor:
-npm run dev
+## Contato 📧
+- [Meu E-mail](mailto:leonardonascferreira@gmail.com)

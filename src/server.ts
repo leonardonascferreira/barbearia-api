@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import app from './app.ts'
+import app from './app.js'
 
 // define a porta que o servidor vai escutar
 const port = 3000

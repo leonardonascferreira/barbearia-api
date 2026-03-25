@@ -22,7 +22,7 @@ async function updateServicoService(id: number, nome: string, preco: number, dur
     if (!servicoAtual) throw new Error('Serviço não encontrado')
     
     const novoNome = nome || servicoAtual.nome
-    const novoPreco = preco || servicoAtual.preco
+    const novoPreco = preco || Number(servicoAtual.preco)
     const novaDuracao = duracao || servicoAtual.duracao
 
     const servico = await updateServico(id, novoNome, novoPreco, novaDuracao)

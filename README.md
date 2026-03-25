@@ -1,6 +1,6 @@
 ## Sistema de Agendamento para Barbearia 💈
 
-API REST para gerenciamento de agendamentos de barbearia, eliminando a necessidade de controle manual via WhatsApp. Desenvolvida com Node.js, TypeScript, Prisma ORM e MySQL.
+API REST para o gerenciamento de agendamentos de barbearia, eliminando a necessidade de controle manual via WhatsApp. Desenvolvida com Node.js, TypeScript, Prisma ORM e MySQL.
 
 ---
 

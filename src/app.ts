@@ -26,5 +26,9 @@ app.use(agendamentoRouter)
 // registra as rotas dos clientes na aplicação
 app.use(clienteRouter)
 
+app.get("/", (req, res) => {
+    res.send("API rodando")
+})
+
 // exporta o app para ser usado no server.ts
 export default app

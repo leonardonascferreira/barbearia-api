@@ -1,4 +1,5 @@
 import express from 'express'   
+import cors from 'cors'
 import barbeiroRouter from './modules/barbeiros/barbeiros.routes.js'
 import servicoRouter from './modules/servicos/servicos.routes.js'
 import agendamentoRouter from './modules/agendamentos/agendamentos.routes.js'
@@ -9,6 +10,9 @@ const app = express()
 
 // permite que a aplicação leia JSON no corpo das requisições
 app.use(express.json())
+
+// permite que o frontend consuma a API
+app.use(cors())
 
 // registra as rotas do barbeiros na aplicação
 app.use(barbeiroRouter)

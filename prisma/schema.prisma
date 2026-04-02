@@ -7,38 +7,38 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Cliente {
-  id          Int @id @default(autoincrement())
-  nome        String
-  telefone    String @unique
-  email       String @unique
-  agendamentos Agendamento[]
+model Client {
+  id           Int           @id @default(autoincrement())
+  name         String
+  phone        String        @unique
+  email        String        @unique
+  appointments Appointment[]
 }
 
-model Barbeiro {
-  id          Int @id @default(autoincrement())
-  nome        String
-  login       String @unique
-  senha       String 
-  agendamentos Agendamento[]
+model Barber {
+  id           Int           @id @default(autoincrement())
+  name         String
+  username     String        @unique
+  password     String
+  appointments Appointment[]
 }
 
-model Servico {
-  id          Int @id @default(autoincrement())
-  nome        String
-  preco       Decimal @db.Decimal(10, 2)
-  duracao     Int
-  agendamentos Agendamento[]
+model Service {
+  id           Int           @id @default(autoincrement())
+  name         String
+  price        Decimal       @db.Decimal(10, 2)
+  duration     Int
+  appointments Appointment[]
 }
 
-model Agendamento {
-  id          Int @id @default(autoincrement())
-  dataHora    DateTime
-  status      String
-  clienteId   Int
-  cliente Cliente @relation(fields: [clienteId], references: [id])
-  barbeiroId  Int
-  barbeiro    Barbeiro @relation(fields: [barbeiroId], references: [id])
-  servicoId   Int
-  servico     Servico @relation(fields: [servicoId], references: [id])
+model Appointment {
+  id        Int      @id @default(autoincrement())
+  scheduledAt DateTime
+  status    String
+  clientId  Int
+  client    Client   @relation(fields: [clientId], references: [id])
+  barberId  Int
+  barber    Barber   @relation(fields: [barberId], references: [id])
+  serviceId Int
+  service   Service  @relation(fields: [serviceId], references: [id])
 }

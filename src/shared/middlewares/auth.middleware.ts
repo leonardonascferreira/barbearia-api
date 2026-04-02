@@ -19,8 +19,8 @@ async function authMiddleware(req, res, next) {
             res.status(401).json({ message: 'Token inválido'})
         }
 
-    // token válido, deixa a requisição passar
-    next()
+        // token válido, deixa a requisição passar
+        next()
     })
 } 
 

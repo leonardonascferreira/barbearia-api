@@ -1,5 +1,5 @@
 import { findBarbeiroById } from "../barbeiros/barbeiros.repository.js"
-import { findServicoById } from "../servicos/servicos.repository.js"
+import { findServicoById } from "../services/services.repository.js"
 import { createAgendamento, updateAgendamento, deleteAgendamento, findAgendamentosByDataHoraEBarbeiro, findAgendamentosByData } from "./agendamentos.repository.js"
 
 // função para criar um agendamento com tratamento de erro

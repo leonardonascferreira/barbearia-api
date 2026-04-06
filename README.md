@@ -1,47 +1,43 @@
-## Sistema de Agendamento para Barbearia 💈
-
-API REST para o gerenciamento de agendamentos de barbearia, eliminando a necessidade de controle manual via WhatsApp. Desenvolvida com Node.js, TypeScript, Prisma ORM e MySQL.
-
----
-
-## Funcionalidades 🛠️
-
-- Cadastro e autenticação de barbeiros com JWT
-- Middleware de autenticação para proteção de rotas
-- CRUD completo de serviços
-- Cadastro de clientes
-- Criação de agendamentos com validações de negócio
-- Confirmação e cancelamento de agendamentos
-- Listagem de agendamentos por data
+## Barbershop Appointment System 💈
+REST API for managing barbershop appointments, eliminating the need for manual scheduling via WhatsApp. Built with Node.js, TypeScript, Prisma ORM and MySQL.
 
 ---
 
-## Tecnologias 💻
-
-- **Node.js** — Runtime JavaScript
-- **TypeScript** — Tipagem estática
-- **Express** — Framework HTTP
-- **Prisma ORM** — Comunicação com banco de dados
-- **MySQL** — Banco de dados relacional
-- **JWT** — Autenticação e controle de acesso
-- **Bcrypt** — Hash de senhas
+## Features 🛠️
+- Barber registration and authentication with JWT
+- Authentication middleware for route protection
+- Full CRUD for services
+- Client registration
+- Appointment creation with business validations
+- Appointment confirmation and cancellation
+- Appointment listing by date
 
 ---
 
-## Arquitetura 📐
+## Tech Stack 💻
+- **Node.js** — JavaScript runtime
+- **TypeScript** — Static typing
+- **Express** — HTTP framework
+- **Prisma ORM** — Database communication
+- **MySQL** — Relational database
+- **JWT** — Authentication and access control
+- **Bcrypt** — Password hashing
 
-O projeto segue uma arquitetura em camadas (Controller → Service → Repository), garantindo separação de responsabilidades e facilidade de manutenção.
+---
+
+## Architecture 📐
+The project follows a layered architecture (Controller → Service → Repository), ensuring separation of concerns and ease of maintenance.
 ```
 src/
 ├── modules/
-│   ├── barbeiros/
-│   │   ├── barbeiros.controller.ts
-│   │   ├── barbeiros.service.ts
-│   │   ├── barbeiros.repository.ts
-│   │   └── barbeiros.routes.ts
-│   ├── clientes/
-│   ├── servicos/
-│   └── agendamentos/
+│   ├── barbers/
+│   │   ├── barbers.controller.ts
+│   │   ├── barbers.service.ts
+│   │   ├── barbers.repository.ts
+│   │   └── barbers.routes.ts
+│   ├── clients/
+│   ├── services/
+│   └── appointments/
 ├── shared/
 │   └── middlewares/
 │       └── auth.middleware.ts
@@ -53,68 +49,69 @@ src/
 
 ---
 
-## Rotas da API 🔗
+## API Routes 🔗
 
-### Barbeiros
-| Método | Rota | Descrição | Auth |
-|--------|------|-----------|------|
-| POST | /barbeiros | Cadastro de barbeiro | ❌ |
-| POST | /login | Login do barbeiro | ❌ |
+### Barbers
+| Method | Route | Description | Auth |
+|--------|-------|-------------|------|
+| POST | /barbers | Register barber | ❌ |
+| POST | /login | Barber login | ❌ |
 
-### Serviços
-| Método | Rota | Descrição | Auth |
-|--------|------|-----------|------|
-| GET | /servicos | Listar serviços | ❌ |
-| POST | /servicos | Criar serviço | ✅ |
-| PUT | /servicos/:id | Atualizar serviço | ✅ |
-| DELETE | /servicos/:id | Deletar serviço | ✅ |
+### Services
+| Method | Route | Description | Auth |
+|--------|-------|-------------|------|
+| GET | /services | List services | ❌ |
+| POST | /services | Create service | ✅ |
+| PUT | /services/:id | Update service | ✅ |
+| DELETE | /services/:id | Delete service | ✅ |
 
-### Clientes
-| Método | Rota | Descrição | Auth |
-|--------|------|-----------|------|
-| POST | /clientes | Cadastrar cliente | ❌ |
+### Clients
+| Method | Route | Description | Auth |
+|--------|-------|-------------|------|
+| POST | /clients | Register client | ❌ |
+| PUT | /clients/:id | Update client | ✅ |
+| DELETE | /clients/:id | Delete client | ✅ |
 
-### Agendamentos
-| Método | Rota | Descrição | Auth |
-|--------|------|-----------|------|
-| POST | /agendamentos | Criar agendamento | ❌ |
-| GET | /agendamentos?data= | Listar por data | ✅ |
-| PUT | /agendamentos/:id | Atualizar status | ✅ |
-| DELETE | /agendamentos/:id | Deletar agendamento | ✅ |
+### Appointments
+| Method | Route | Description | Auth |
+|--------|-------|-------------|------|
+| POST | /appointments | Create appointment | ❌ |
+| GET | /appointments?date= | List by date | ✅ |
+| PUT | /appointments/:id | Update status | ✅ |
+| DELETE | /appointments/:id | Delete appointment | ✅ |
 
 ---
 
-## Como executar ▶️
+## Getting Started ▶️
 
-1. Clone o repositório:
+1. Clone the repository:
 ```bash
 git clone https://github.com/leonardonascferreira/barbearia-api
 ```
 
-2. Instale as dependências:
+2. Install dependencies:
 ```bash
 npm install
 ```
 
-3. Configure o `.env`:
+3. Configure `.env`:
 ```env
-DATABASE_URL="mysql://usuario:senha@localhost:3306/barbearia_db"
-JWT_SECRET="sua_chave_secreta"
+DATABASE_URL="mysql://user:password@localhost:3306/barbershop_db"
+JWT_SECRET="your_secret_key"
 ```
 
-4. Execute as migrations:
+4. Run migrations:
 ```bash
 npx prisma migrate dev
 ```
 
-5. Inicie o servidor:
+5. Start the server:
 ```bash
 npm run dev
 ```
 
 ---
 
-## Contato 📧
-
+## Contact 📧
 - [LinkedIn](https://linkedin.com/in/leonardonascferreira)
 - [E-mail](mailto:leonardonascferreira@gmail.com)

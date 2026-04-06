@@ -33,7 +33,14 @@ async function deleteAppointment(req: Request, res: Response) {
 }
 
 async function getAppointmentsByDate(req: Request, res: Response) {
-  const date = new Date(req.query.date as string)
+  const rawDate = req.query.date as string
+  if (!rawDate) {
+    return res.status(400).json({ message: 'Date is required' })
+  }
+  const date = new Date(rawDate)
+  if (isNaN(date.getTime())) {
+    return res.status(400).json({ message: 'Invalid date format' })
+  }
   try {
     const appointments = await findAppointmentsByDateService(date)
     res.json(appointments)

@@ -16,9 +16,8 @@ async function authMiddleware(req, res, next) {
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
             // token inválido ou expirado
-            res.status(401).json({ message: 'Token inválido'})
+            return res.status(401).json({ message: 'Token inválido'})
         }
-
         // token válido, deixa a requisição passar
         next()
     })

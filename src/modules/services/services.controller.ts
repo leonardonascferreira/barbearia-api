@@ -7,7 +7,7 @@ async function createService(req: Request, res: Response) {
     const service = await createServiceService(name, price, duration)
     res.json(service)
   } catch (error) {
-    res.status(400).json({ message: error.message })
+    res.status(400).json({ message: (error as Error).message })
   }
 }
 
@@ -16,7 +16,7 @@ async function findAllServices(req: Request, res: Response) {
     const services = await findAllServicesService()
     res.json(services)
   } catch (error) {
-    res.status(400).json({ message: error.message })
+    res.status(400).json({ message: (error as Error).message })
   }
 }
 
@@ -27,7 +27,7 @@ async function updateService(req: Request, res: Response) {
     const service = await updateServiceService(id, name, price, duration)
     res.json(service)
   } catch (error) {
-    res.status(400).json({ message: error.message })
+    res.status(400).json({ message: (error as Error).message })
   }
 }
 
@@ -37,7 +37,7 @@ async function deleteService(req: Request, res: Response) {
     const service = await deleteServiceService(id)
     res.json(service)
   } catch (error) {
-    res.status(400).json({ message: error.message })
+    res.status(400).json({ message: (error as Error).message })
   }
 }
 

@@ -7,7 +7,7 @@ async function createBarber(req: Request, res: Response) {
     const barber = await createBarberService(name, username, password)
     res.json(barber)
   } catch (error) {
-    res.status(400).json({ message: error.message })
+    res.status(400).json({ message: (error as Error).message })
   }
 }
 
@@ -17,7 +17,7 @@ async function loginBarber(req: Request, res: Response) {
     const token = await loginBarberService(username, password)
     res.json({ token })
   } catch (error) {
-    res.status(400).json({ message: error.message })
+    res.status(400).json({ message: (error as Error).message })
   }
 }
 

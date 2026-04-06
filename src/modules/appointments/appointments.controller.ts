@@ -7,7 +7,7 @@ async function createAppointment(req: Request, res: Response) {
     const appointment = await createAppointmentService(new Date(scheduledAt), clientId, barberId, serviceId)
     res.json(appointment)
   } catch (error) {
-    res.status(400).json({ message: error.message })
+    res.status(400).json({ message: (error as Error).message })
   }
 }
 
@@ -18,7 +18,7 @@ async function updateAppointment(req: Request, res: Response) {
     const appointment = await updateAppointmentService(id, status)
     res.json(appointment)
   } catch (error) {
-    res.status(400).json({ message: error.message })
+    res.status(400).json({ message: (error as Error).message })
   }
 }
 
@@ -28,7 +28,7 @@ async function deleteAppointment(req: Request, res: Response) {
     const appointment = await deleteAppointmentService(id)
     res.json(appointment)
   } catch (error) {
-    res.status(400).json({ message: error.message })
+    res.status(400).json({ message: (error as Error).message })
   }
 }
 
@@ -45,7 +45,7 @@ async function getAppointmentsByDate(req: Request, res: Response) {
     const appointments = await findAppointmentsByDateService(date)
     res.json(appointments)
   } catch (error) {
-    res.status(400).json({ message: error.message })
+    res.status(400).json({ message: (error as Error).message })
   }
 }
 

@@ -12,7 +12,14 @@ async function findAppointmentsByDate(date: Date) {
   const end = new Date(date)
   end.setHours(23, 59, 59, 999)
   return prisma.appointment.findMany({
-     where: { scheduledAt: { gte: start, lte: end } }, include: {client: true, barber: true, service: true}
+    where: { scheduledAt: { gte: start, lte: end } },
+    include: {
+      client: true,
+      barber: {
+        select: { id: true, name: true, username: true }
+      },
+      service: true
+    }
   })
 }
 

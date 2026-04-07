@@ -3,6 +3,7 @@ import { findClientById } from '../clients/clients.repository.js'
 import { findServiceById } from '../services/services.repository.js'
 import { createAppointment, updateAppointment, deleteAppointment, findAppointmentByDateAndBarber, findAppointmentsByDate } from './appointments.repository.js'
 
+
 async function createAppointmentService(scheduledAt: Date, clientId: number, barberId: number, serviceId: number) {
   if (scheduledAt < new Date()) throw new Error('Date cannot be in the past')
 
@@ -21,13 +22,16 @@ async function createAppointmentService(scheduledAt: Date, clientId: number, bar
   return createAppointment(scheduledAt, 'pending', clientId, barberId, serviceId)
 }
 
+
 async function updateAppointmentService(id: number, status: string) {
   return updateAppointment(id, status)
 }
 
+
 async function deleteAppointmentService(id: number) {
   return deleteAppointment(id)
 }
+
 
 async function findAppointmentsByDateService(date: Date) {
   return findAppointmentsByDate(date)

@@ -1,21 +1,19 @@
 import prisma from '../../config/prisma.js'
 
-async function createBarber(name: string, username: string, password: string) {
-  return prisma.barber.create({
-    data: { name, username, password }
-  })
+/** 
+ * Busca barbeiro pelo e-mail único.
+ * Retorna null se não encontrado.
+ */
+async function findBarberByEmail(email: string) {
+  return prisma.barber.findUnique({ where: { email } })
 }
 
-async function findBarberByUsername(username: string) {
-  return prisma.barber.findUnique({
-    where: { username }
-  })
-}
-
+/**
+ * Busca barbeiro pelo ID.
+ * Retorna null se não encontrado
+ */
 async function findBarberById(id: number) {
-  return prisma.barber.findUnique({
-    where: { id }
-  })
+  return prisma.barber.findUnique({ where: { id } })
 }
 
-export { createBarber, findBarberByUsername, findBarberById }
+export { findBarberByEmail, findBarberById }

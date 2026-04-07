@@ -1,23 +1,23 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import { createBarber, findBarberByUsername } from './barbers.repository.js'
+import { findBarberByEmail } from './barbers.repository.js'
 
-async function createBarberService(name: string, username: string, password: string) {
-  const exists = await findBarberByUsername(username)
-  if (exists) throw new Error('Username already registered')
 
-  const hashedPassword = await bcrypt.hash(password, 10)
-  return createBarber(name, username, hashedPassword)
-}
-
-async function loginBarberService(username: string, password: string) {
-  const barber = await findBarberByUsername(username)
-  if (!barber) throw new Error('Username not found')
+/**
+ * Autentica o barbeiro comparando o e-mail e senha.
+ * 
+ * @returns Token JWT com validade de 1 dia.
+ * @throws Erro com mensagem amigável para credenciais inválidas.
+ */
+async function loginBarberService(email: string, password: string) {
+  const barber = await findBarberByEmail(email)
+  if (!barber) throw new Error('E-mail não encontrado')
 
   const match = await bcrypt.compare(password, barber.password)
-  if (!match) throw new Error('Invalid password')
+  if (!match) throw new Error('Senha inválida')
 
+  // O payload do token carrega apenas o ID para minizar exposição de dados.
   return jwt.sign({ id: barber.id }, process.env.JWT_SECRET!, { expiresIn: '1d' })
 }
 
-export { createBarberService, loginBarberService }
+export { loginBarberService }

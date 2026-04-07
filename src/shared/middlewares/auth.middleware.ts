@@ -1,26 +1,40 @@
+import { Request, Response, NextFunction } from 'express'
 import jwt from 'jsonwebtoken'
 
-// middleware responsável por verificar se o token JWT é válido
-async function authMiddleware(req, res, next) {
-    // pega o token do cabeçalho Authorization
+/** Formato do payload gravado no token durante o login. */
+interface JwtPayload {
+    id: number
+}
+
+/** Estende o tipo Request do Express para incluir `user`,
+ * disponível após a validação do token.
+ */
+export interface AuthenticatedRequest extends Request {
+    user?: JwtPayload
+}
+
+export async function authMiddleware(
+    req: AuthenticatedRequest,
+    res: Response,
+    next: NextFunction
+) {
     const authHeader = req.headers.authorization
 
-    if (!authHeader) {
+    // Header obrigatório no formato "Bearer <token> "
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
         return res.status(401).json({ message: 'Token não fornecido' })
     }
 
-    // separa o "Bearer" do token
     const token = authHeader.split(' ')[1]
 
-    // verifica se o token é válido
-    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    jwt.verify(token, process.env.JWT_SECRET!, (err, decoded) => {
         if (err) {
-            // token inválido ou expirado
-            return res.status(401).json({ message: 'Token inválido'})
+            // Token inválido, adulterado ou expirado
+            return res.status(401).json({ message: 'Token inválido' })
         }
-        // token válido, deixa a requisição passar
+
+        // Injeta os dados do barbeiro autenticado na requisição
+        req.user = decoded as JwtPayload
         next()
     })
-} 
-
-export { authMiddleware }
+}

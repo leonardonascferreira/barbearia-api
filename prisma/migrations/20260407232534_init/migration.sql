@@ -4,6 +4,8 @@ CREATE TABLE `Client` (
     `name` VARCHAR(191) NOT NULL,
     `phone` VARCHAR(191) NOT NULL,
     `email` VARCHAR(191) NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL,
 
     UNIQUE INDEX `Client_phone_key`(`phone`),
     UNIQUE INDEX `Client_email_key`(`email`),
@@ -14,10 +16,12 @@ CREATE TABLE `Client` (
 CREATE TABLE `Barber` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(191) NOT NULL,
-    `username` VARCHAR(191) NOT NULL,
+    `email` VARCHAR(191) NOT NULL,
     `password` VARCHAR(191) NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL,
 
-    UNIQUE INDEX `Barber_username_key`(`username`),
+    UNIQUE INDEX `Barber_email_key`(`email`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -27,6 +31,8 @@ CREATE TABLE `Service` (
     `name` VARCHAR(191) NOT NULL,
     `price` DECIMAL(10, 2) NOT NULL,
     `duration` INTEGER NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -35,10 +41,12 @@ CREATE TABLE `Service` (
 CREATE TABLE `Appointment` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `scheduledAt` DATETIME(3) NOT NULL,
-    `status` VARCHAR(191) NOT NULL,
+    `status` ENUM('PENDING', 'CONFIRMED', 'CANCELED', 'COMPLETED') NOT NULL DEFAULT 'PENDING',
     `clientId` INTEGER NOT NULL,
     `barberId` INTEGER NOT NULL,
     `serviceId` INTEGER NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

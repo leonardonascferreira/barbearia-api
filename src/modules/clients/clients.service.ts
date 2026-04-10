@@ -61,4 +61,8 @@ async function deleteClientService(id: number) {
   return deleteClient(id)
 }
 
-export { createClientService, updateClientService, deleteClientService }
+export {
+  createClientService,
+  updateClientService,
+  deleteClientService
+}

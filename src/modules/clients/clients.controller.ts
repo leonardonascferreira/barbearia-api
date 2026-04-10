@@ -46,4 +46,8 @@ async function deleteClient(req: Request, res: Response) {
   }
 }
 
-export { createClient, updateClient, deleteClient }
+export {
+  createClient,
+  updateClient,
+  deleteClient
+}

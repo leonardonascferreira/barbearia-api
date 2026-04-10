@@ -38,4 +38,11 @@ async function deleteClient(id: number) {
   return prisma.client.delete({ where: { id } })
 }
 
-export { createClient, findClientByPhone, findClientByEmail, findClientById, updateClient, deleteClient }
+export {
+  createClient,
+  findClientByPhone,
+  findClientByEmail,
+  findClientById,
+  updateClient,
+  deleteClient
+}

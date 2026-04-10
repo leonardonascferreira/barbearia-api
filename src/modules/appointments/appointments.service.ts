@@ -64,12 +64,13 @@ async function createAppointmentService(
   }
 
   // 5. Verificar colisão de horário
-  const candidate = await findOverlappingAppointment(barberId, scheduledAt, newEnd)
-  if (candidate) {
+  const candidates = await findActiveAppointmentsByBarberAndRange(barberId, scheduledAt, newEnd)
+  for (const candidate of candidates) {
     const candidateEnd = new Date(
       candidate.scheduledAt.getTime() + candidate.service.duration * 60_000
     )
-    if (candidateEnd > scheduledAt) {
+
+    if (scheduledAt < candidateEnd && newEnd > candidate.scheduledAt) {
       throw new Error('Horário já ocupado para este barbeiro')
     }
   }

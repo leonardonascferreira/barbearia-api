@@ -16,4 +16,7 @@ async function findBarberById(id: number) {
   return prisma.barber.findUnique({ where: { id } })
 }
 
-export { findBarberByEmail, findBarberById }
+export {
+  findBarberByEmail,
+  findBarberById
+}

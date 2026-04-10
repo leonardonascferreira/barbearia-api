@@ -114,13 +114,12 @@ async function findActiveAppointmentsByBarberAndRange(
     where: {
       barberId,
       status: { not: 'CANCELED' },
-      scheduledAt: { get: start, lt: end }
+      scheduledAt: { gte: start, lt: end }
     },
     include: { service: true },
     orderBy: { scheduledAt: 'asc' }
   })
 }
-
 
 export {
   createAppointment,

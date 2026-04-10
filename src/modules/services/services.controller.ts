@@ -57,4 +57,9 @@ async function deleteService(req: Request, res: Response) {
   }
 }
 
-export { createService, findAllServices, updateService, deleteService }
+export {
+  createService,
+  findAllServices,
+  updateService,
+  deleteService
+}

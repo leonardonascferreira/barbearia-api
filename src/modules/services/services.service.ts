@@ -40,7 +40,6 @@ async function updateServiceService(id: number, name?: string, price?: number, d
   )
 }
 
-
 /**
  * Remove um serviço pelo ID.
  * Verifica a existência antes de deletar para retornar o erro claro.
@@ -52,4 +51,9 @@ async function deleteServiceService(id: number) {
   return deleteService(id)
 }
 
-export { createServiceService, findAllServicesService, updateServiceService, deleteServiceService }
+export {
+  createServiceService,
+  findAllServicesService,
+  updateServiceService,
+  deleteServiceService
+}

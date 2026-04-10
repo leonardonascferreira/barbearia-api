@@ -32,4 +32,10 @@ async function deleteService(id: number) {
   return prisma.service.delete({ where: { id } })
 }
 
-export { createService, findAllServices, findServiceById, updateService, deleteService }
+export {
+  createService,
+  findAllServices,
+  findServiceById,
+  updateService,
+  deleteService
+}

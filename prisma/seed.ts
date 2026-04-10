@@ -4,36 +4,44 @@ import bcrypt from "bcrypt";
 const prisma = new PrismaClient();
 
 async function main() {
-  const barberEmail = "barbeiro@barbearia.com";
-  const barberPassword = "123456";
+  const name = process.env.BARBER_NAME
+  const email = process.env.BARBER_EMAIL
+  const password = process.env.BARBER_PASSWORD
 
-  const existingBarber = await prisma.barber.findUnique({
+  if (!name || !email || !password) {
+    throw new Error(
+      'Defina BARBER_NAME, BARBER_EMAIL e BARBER_PASSWORD no .env antes de rodar o seed.'
+    )
+  }
+
+  // Verifica se o barbeiro já existe para evitar duplicata em re-execuções.
+  const existing = await prisma.barber.findUnique({
     where: { email: barberEmail },
   });
 
-  if (existingBarber) {
-    console.log("Barbeiro já existe.");
-    return;
+  if (existing) {
+    console.log(`Barbeiro já cadastrado: ${existing.email}`);
+    return
   }
 
-  const hashedPassword = await bcrypt.hash(barberPassword, 10);
+  const hashedPassword = await bcrypt.hash(password, 10);
 
-  await prisma.barber.create({
+  const barber = await prisma.barber.create({
     data: {
-      name: "Leonardo Barber",
-      email: barberEmail,
-      password: hashedPassword,
+      name,
+      email,
+      password: hashedPassword
     },
   });
 
-  console.log("Barbeiro criado com sucesso.");
+  console.log(`Barbeiro criado: ${barber.name} (${barber.email})`);
 }
 
 main()
   .catch((e) => {
-    console.error("Erro ao rodar seed:", e);
+    console.error(e);
     process.exit(1);
   })
-  .finally(async () => {
-    await prisma.$disconnect();
+  .finally(() => {
+    prisma.$disconnect();
   });

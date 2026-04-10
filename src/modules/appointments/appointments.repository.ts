@@ -31,7 +31,7 @@ async function findAppointmentsByDate(date: Date) {
     include: {
       client: true,
       barber: {
-        select: { id: true, name: true, username: true }
+        select: { id: true, name: true, email: true }
       },
       service: true
     }
